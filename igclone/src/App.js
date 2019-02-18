@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
 
