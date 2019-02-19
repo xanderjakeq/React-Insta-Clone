@@ -13,13 +13,15 @@ class App extends Component {
     super(props)
 
     this.state = {
-      data : [] 
+      data : [] ,
+      searchVal: '',
     }
   }
 
   componentDidMount(){
     this.setState({
-      data: dummyData
+      data: dummyData,
+      prevData: dummyData
     })
   }
 
@@ -48,10 +50,25 @@ class App extends Component {
       data: updateData
     })
   }
+
+  handleSearch = (e) => {
+    if(e.target.value !== ''){
+      this.setState({
+        data: this.state.data.filter(post => post.username.includes(e.target.value)),
+        searchVal: e.target.value
+      })
+    }else{
+      this.setState({
+        data: this.state.prevData,
+        searchVal: e.target.value
+      })
+    }
+    
+  }
   render() {
     return (
     <div className="App">
-      <SearchBar/>
+      <SearchBar handleSearch = {this.handleSearch} value = {this.state.searchVal}/>
       <PostsContainer data = {this.state.data} addComment = {this.addComment} incLikes = {this.incrementLikes}/>
 	  </div>
     );
