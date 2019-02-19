@@ -42,7 +42,6 @@ class App extends Component {
    */
   incrementLikes = (index) => {
     let post = this.state.data[index]
-    post.likes = post.likes++
     post.likes = ++post.likes
     let updateData = this.state.data
     updateData.splice(index,1,post)
@@ -51,16 +50,14 @@ class App extends Component {
     })
   }
 
-  handleSearch = (e) => {
-    if(e.target.value !== ''){
+  handleSearch = (searchTerm) => {
+    if(searchTerm !== ''){
       this.setState({
-        data: this.state.data.filter(post => post.username.includes(e.target.value)),
-        searchVal: e.target.value
+        data: this.state.data.filter(post => post.username.includes(searchTerm)),
       })
     }else{
       this.setState({
         data: this.state.prevData,
-        searchVal: e.target.value
       })
     }
     
