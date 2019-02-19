@@ -7,7 +7,8 @@ const PostsContainer = (props) => {
                 {props.data.map((post,index) => <Post key = {`${post.username}${index}`} 
                                                       index = {index} 
                                                       postData = {post}
-                                                      addComment = {props.addComment}/>)}
+                                                      addComment = {props.addComment}
+                                                      incLikes = {props.incLikes}/>)}
             </main>
     )
 }

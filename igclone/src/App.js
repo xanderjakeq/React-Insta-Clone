@@ -35,11 +35,24 @@ class App extends Component {
       data: updateData
     })
   }
+  /**
+   * takes index of a post and increment the number of likes
+   */
+  incrementLikes = (index) => {
+    let post = this.state.data[index]
+    post.likes = post.likes++
+    post.likes = ++post.likes
+    let updateData = this.state.data
+    updateData.splice(index,1,post)
+    this.setState({
+      data: updateData
+    })
+  }
   render() {
     return (
     <div className="App">
       <SearchBar/>
-      <PostsContainer data = {this.state.data} addComment = {this.addComment}/>
+      <PostsContainer data = {this.state.data} addComment = {this.addComment} incLikes = {this.incrementLikes}/>
 	  </div>
     );
   }

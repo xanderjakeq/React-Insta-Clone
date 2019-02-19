@@ -9,7 +9,7 @@ class Post extends Component {
         
         this.state = {
             username: 'jdoe',
-            text: '',
+            newComment: '',
         }
     }
 
@@ -19,10 +19,17 @@ class Post extends Component {
             [e.target.name]: e.target.value,
         })
     }
-    handleSubmit = () => {
-        this.setState({text: ''})
-        this.props.addComment(this.state, this.props.index)
+    handleSubmit = (e) => {
+        e.preventDefault()
+        let newCommentObj = {
+            username: this.state.username,
+            text: this.state.newComment
+        }
+        this.props.addComment(newCommentObj, this.props.index)
+        this.setState({newComment: ''})
     }
+
+    
 
     render(){
 
@@ -37,12 +44,13 @@ class Post extends Component {
                         <img src={this.props.postData.imageUrl} alt="Post"/>
                     </div>
                     <div className= 'postDetails'>
-                    <div><Icons.Heart/><Icons.MessageCircle/></div> 
+                    <div><Icons.Heart onClick={() => this.props.incLikes(this.props.index)}/><Icons.MessageCircle/></div> 
                     <div>{`${this.props.postData.likes} likes`}</div>
                     <CommentSection comments = {this.props.postData.comments}/>
-                    
-                    <input name = 'text' type = "text" value = {this.state.text} onChange = {this.onChange}/>
-                    <button onClick = {this.handleSubmit}>Addcomment</button>
+                    <form onSubmit = {this.handleSubmit}>   
+                        <input name = 'newComment' type = "text" value = {this.state.newComment} onChange = {this.onChange}/>
+                        <input type = "submit" value ="submit"/>
+                    </form>
                     </div>
                 </div>                
             </Fragment>
