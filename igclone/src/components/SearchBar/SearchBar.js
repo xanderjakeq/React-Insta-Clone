@@ -1,18 +1,20 @@
 import React from 'react'
 
-import {Explore, Heart, User} from 'react-feather'
+import * as Icons from 'react-feather'
 
 const SearchBar = () => {
     return (
         <nav>
             <div>
-                Logo
+                <Icons.Instagram size = {30}/>
             </div>
             <div>
                 <input/>
             </div>
-            <div>
-                Icons
+            <div className = "navIcons">
+                <Icons.Compass/>
+                <Icons.Heart/>
+                <Icons.User/>
             </div>
 
         </nav>

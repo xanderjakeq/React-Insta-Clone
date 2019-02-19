@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import CommentSection from '../CommentSection/CommentSection'
 import PropTypes from 'prop-types'
+import * as Icons from 'react-feather'
 
 const Post = (props) => {
     const post = props.postData;
@@ -15,8 +16,8 @@ const Post = (props) => {
                     <img src={post.imageUrl} alt="Post"/>
                 </div>
                 <div className= 'postDetails'>
-                   <div>Icons</div> 
-                   <div>likes</div>
+                   <div><Icons.Heart/><Icons.MessageCircle/></div> 
+                   <div>{`${post.likes} likes`}</div>
                    <CommentSection comments = {post.comments}/>
                    <input/>
                 </div>
