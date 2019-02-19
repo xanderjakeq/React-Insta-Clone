@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Fuse from 'fuse.js'
 import Proptypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
@@ -19,9 +20,21 @@ class App extends Component {
   }
 
   componentDidMount(){
+      let options = {
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "username",
+        ]
+      };
     this.setState({
       data: dummyData,
-      prevData: dummyData
+      prevData: dummyData,
+      fuse: new Fuse(dummyData, options)
     })
   }
 
@@ -51,9 +64,10 @@ class App extends Component {
   }
 
   handleSearch = (searchTerm) => {
+        // data: this.state.data.filter(post => post.username.includes(searchTerm)),
     if(searchTerm !== ''){
       this.setState({
-        data: this.state.data.filter(post => post.username.includes(searchTerm)),
+        data: this.state.fuse.search(searchTerm)
       })
     }else{
       this.setState({
