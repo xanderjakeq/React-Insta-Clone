@@ -13,7 +13,8 @@ class PostsPage extends Component {
 
     this.state = {
       data : [] ,
-      results : []
+      results : [],
+      currentUser : window.localStorage.getItem('username')
     }
   }
 
@@ -40,7 +41,7 @@ class PostsPage extends Component {
    */
   addComment = (newComment,index) => {
     let updatePost = this.state.data[index]
-    updatePost.comments.push(newComment)
+    updatePost.comments.push({username: this.state.currentUser, text: newComment})
     let updateData = this.state.data
     updateData.slice(index,1,updatePost)
     this.setState({

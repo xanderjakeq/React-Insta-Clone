@@ -8,7 +8,7 @@ class Post extends Component {
         super(props)
         
         this.state = {
-            username: 'jdoe',
+            // username: window.localStorage.getItem('username'),
             newComment: '',
         }
     }
@@ -27,11 +27,11 @@ class Post extends Component {
      */
     handleSubmit = (e) => {
         e.preventDefault()
-        let newCommentObj = {
-            username: this.state.username,
-            text: this.state.newComment
-        }
-        this.props.addComment(newCommentObj, this.props.index)
+        // let newCommentObj = {
+        //     username: this.state.username,
+        //     text: this.state.newComment
+        // }
+        this.props.addComment(this.state.newComment, this.props.index)
         this.setState({newComment: ''})
     }
 
