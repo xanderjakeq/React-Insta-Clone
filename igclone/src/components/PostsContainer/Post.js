@@ -13,12 +13,18 @@ class Post extends Component {
         }
     }
 
-
+    /**
+     * hande input change for comments
+     */
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         })
     }
+    /**
+     * Creates a comment object and pass it into the
+     * addComment() prop
+     */
     handleSubmit = (e) => {
         e.preventDefault()
         let newCommentObj = {
@@ -29,10 +35,7 @@ class Post extends Component {
         this.setState({newComment: ''})
     }
 
-    
-
     render(){
-
         return (
             <Fragment>
                 <div>
@@ -44,13 +47,13 @@ class Post extends Component {
                         <img src={this.props.postData.imageUrl} alt="Post"/>
                     </div>
                     <div className= 'postDetails'>
-                    <div><Icons.Heart onClick={() => this.props.incLikes(this.props.index)}/><Icons.MessageCircle/></div> 
-                    <div>{`${this.props.postData.likes} likes`}</div>
-                    <CommentSection comments = {this.props.postData.comments}/>
-                    <form onSubmit = {this.handleSubmit}>   
-                        <input name = 'newComment' type = "text" value = {this.state.newComment} onChange = {this.onChange}/>
-                        <input type = "submit" value ="submit"/>
-                    </form>
+                        <div><Icons.Heart onClick={() => this.props.incLikes(this.props.index)}/><Icons.MessageCircle/></div> 
+                        <div>{`${this.props.postData.likes} likes`}</div>
+                        <CommentSection comments = {this.props.postData.comments}/>
+                        <form onSubmit = {this.handleSubmit}>   
+                            <input name = 'newComment' type = "text" value = {this.state.newComment} onChange = {this.onChange}/>
+                            <input type = "submit" value ="submit"/>
+                        </form>
                     </div>
                 </div>                
             </Fragment>
