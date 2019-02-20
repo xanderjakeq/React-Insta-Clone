@@ -27,6 +27,7 @@ class Post extends Component {
      */
     handleSubmit = (e) => {
         e.preventDefault()
+        if (this.state.newComment.length === 0) return
         // let newCommentObj = {
         //     username: this.state.username,
         //     text: this.state.newComment
