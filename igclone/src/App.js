@@ -65,19 +65,19 @@ class App extends Component {
    * search the posts 
    * will setState 
    *  results - render the search results
-   *  searchLen - to indicate searching
+   *  isSearching - to indicate searching
    */
   handleSearch = (searchTerm) => {
       this.setState({
         results : this.state.fuse.search(searchTerm),
-        searchLen : searchTerm.length
+        isSearching: searchTerm.length > 0
       })
   }
   render() {
     return (
     <div className="App">
       <SearchBar handleSearch = {this.handleSearch} value = {this.state.searchVal}/>
-      <PostsContainer data = {this.state.searchLen ? this.state.results : this.state.data} addComment = {this.addComment} incLikes = {this.incrementLikes}/>
+      <PostsContainer data = {this.state.isSearching ? this.state.results : this.state.data} addComment = {this.addComment} incLikes = {this.incrementLikes}/>
 	  </div>
     );
   }
