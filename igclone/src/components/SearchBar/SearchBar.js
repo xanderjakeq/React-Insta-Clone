@@ -30,7 +30,7 @@ class SearchBar extends Component {
                 <div className = "navIcons">
                     <Icons.Compass/>
                     <Icons.Heart/>
-                    <Icons.User/>
+                    <Icons.User onClick = {() => this.props.logout()}/>
                 </div>
 
             </nav>
