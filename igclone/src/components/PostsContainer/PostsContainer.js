@@ -1,15 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Post from './Post'
+
+const MainContainer = styled.main`
+    margin: 0 auto;
+    width: 100%; 
+    max-width: 500px;
+`;
 const PostsContainer = (props) => {
     return(
-            <main>
+            <MainContainer>
                 {props.data.map((post,index) => <Post key = {`${post.username}${index}`} 
                                                       index = {index} 
                                                       postData = {post}
                                                       addComment = {props.addComment}
                                                       incLikes = {props.incLikes}/>)}
-            </main>
+            </MainContainer>
     )
 }
 

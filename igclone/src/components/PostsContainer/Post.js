@@ -2,7 +2,20 @@ import React, {Component, Fragment} from 'react'
 import CommentSection from '../CommentSection/CommentSection'
 import PropTypes from 'prop-types'
 import * as Icons from 'react-feather'
+import styled from 'styled-components'
 
+const PostHeader = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 10px;
+`;
+
+const ProfileImg = styled.img`
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 5px;
+`;
 class Post extends Component {
     constructor(props){
         super(props)
@@ -35,15 +48,15 @@ class Post extends Component {
         this.props.addComment(this.state.newComment, this.props.index)
         this.setState({newComment: ''})
     }
-
-    render(){
+render(){
         return (
             <Fragment>
                 <div>
-                    <div className = "postHeader">
-                        <img src={this.props.postData.thumbnailUrl} alt="profile"/>
+                    <PostHeader>                        
+                        {/* <img src={this.props.postData.thumbnailUrl} alt="profile"/> */}
+                        <ProfileImg src={this.props.postData.thumbnailUrl} alt = "profile"/>
                         <h2>{this.props.postData.username}</h2>
-                    </div>
+                    </PostHeader>
                     <div>
                         <img src={this.props.postData.imageUrl} alt="Post"/>
                     </div>
